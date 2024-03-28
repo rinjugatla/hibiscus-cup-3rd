@@ -16,7 +16,7 @@
 	<NavUl {activeUrl}>
 		<NavLi href="/">Home</NavLi>
 		<NavLi href="/sponsors">Sponsors</NavLi>
-		<NavLi href="/teans">Teams</NavLi>
+		<NavLi href="/teams">Teams</NavLi>
 		<NavLi href="/streams">Streams</NavLi>
 	</NavUl>
 </Navbar>
