@@ -1,0 +1,1 @@
+export type HibiscusCupTeamName = 'A' | 'B' | 'C' | 'D' | 'E' | 'F';
