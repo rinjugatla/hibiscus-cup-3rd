@@ -1,4 +1,4 @@
-import type { ICanCreateClipPeriod, ITwitchClip, ITwitchClipAPIResponse, ITwitchClipResponse, TwitchTokenAPIResponse, TwitchUserAPIResponse, TwitchUserResponse, ITwitchVideo, ITwitchVideoAPIResponse, ITwitchVideoResponse } from '$lib/types/Twitch.d';
+import type { ICanCreateClipPeriod, ITwitchClip, ITwitchClipAPIResponse, ITwitchClipResponse, TwitchTokenAPIResponse, TwitchUserAPIResponse, TwitchUserResponse, ITwitchVideo, ITwitchVideoAPIResponse, ITwitchVideoResponse, TwitchStreamResponse, TwitchStreamAPIResponse } from '$lib/types/Twitch.d';
 import axios from 'redaxios';
 
 export class TwitchApiSetting {
@@ -100,7 +100,7 @@ export class TwitchApi {
 		await this.refreshToken();
 		const url = 'https://api.twitch.tv/helix/users';
 
-		const userNameParams = this.createUserNameParams(names);
+		const userNameParams = this.createUserNameParams('login', names);
 		const response = await axios.get<TwitchUserAPIResponse>(url, {
 			headers: {
 				Authorization: this._Token!.token,
@@ -115,12 +115,13 @@ export class TwitchApi {
 	/**
 	 * ユーザ名パラメータを作成
 	 * redaxiosのparamsで同じパラメータ名(login=1&login=2)を使用するとURLエンコードしてしまうので対策
+	 * @param key パラメータキー(loginなど)
 	 * @param names Twtichユーザ名
 	 */
-	private createUserNameParams(names: [string]): URLSearchParams {
+	private createUserNameParams(key: string, names: string[]): URLSearchParams {
 		const params = new URLSearchParams();
 		for (const name of names) {
-			params.append('login', name);
+			params.append(key, name);
 		}
 		return params;
 	}
@@ -236,5 +237,26 @@ export class TwitchApi {
 			params.append('id', id);
 		}
 		return params;
+	}
+
+	/**
+	 * 配信状況を取得
+	 * 配信していないユーザについてはデータが取得されない
+	 * @param names Twitchユーザ名
+	 */
+	async getStream(names: string[]): Promise<TwitchStreamResponse> {
+		await this.refreshToken();
+		const url = 'https://api.twitch.tv/helix/streams';
+
+		const userNameParams = this.createUserNameParams('user_login', names);
+		const response = await axios.get<TwitchStreamAPIResponse>(url, {
+			headers: {
+				Authorization: this._Token!.token,
+				'Client-Id': this._Setting.ClientId
+			},
+			params: userNameParams
+		});
+		const streams = {streams: response.data.data};
+		return streams;
 	}
 }
