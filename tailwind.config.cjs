@@ -59,7 +59,9 @@ const config = {
 					]
 				},
 				hibiscus_cup_theme: '#e7b167',
-				hibiscus_cup_theme_header: '#e7982b'
+				hibiscus_cup_theme_header: '#e7982b',
+				hibiscus_cup_team_name: '#CDB2A0',
+				hibiscus_cup_streamer_name: '#CDB2A0',
 			}
 		}
 	}
