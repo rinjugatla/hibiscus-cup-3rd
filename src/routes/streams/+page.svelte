@@ -57,12 +57,11 @@
 
         let streams = await fetchStreams();
         twitchStreams = streams;
-        console.log(streams);
     })
 </script>
 
 {#if twitchUsers.A.length > 0 && twitchStreams.length > 0}
-    <div class="flex flex-wrap justify-center">
+    <div class="mx-auto flex flex-wrap justify-center w-2/3">
         {#each teamNames as name}
             <TeamMini teamName={name} twitchUsers={twitchUsers[name]} {twitchStreams}/>
         {/each}
