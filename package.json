@@ -39,6 +39,8 @@
 		"flowbite": "^2.3.0",
 		"flowbite-svelte": "^0.44.24",
 		"flowbite-svelte-blocks": "^1.1.0",
-		"flowbite-svelte-icons": "^1.4.3"
+		"flowbite-svelte-icons": "^1.4.3",
+		"redaxios": "^0.5.1",
+		"svelte-coreui-icons": "^1.0.3"
 	}
 }
