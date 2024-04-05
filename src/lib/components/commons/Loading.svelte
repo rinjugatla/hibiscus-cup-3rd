@@ -1,15 +1,17 @@
-<div class="container">
-	<div class="bars">
-		<span class="bars__bar bars__bar--0"></span><span class="bars__bar bars__bar--1"></span><span
-			class="bars__bar bars__bar--2"
-		></span><span class="bars__bar bars__bar--3"></span><span class="bars__bar bars__bar--4"
-		></span><span class="bars__bar bars__bar--5"></span><span
-			class="bars__bar bars__bar--alt bars__bar--0--alt"
-		></span><span class="bars__bar bars__bar--alt bars__bar--1--alt"></span><span
-			class="bars__bar bars__bar--alt bars__bar--2--alt"
-		></span><span class="bars__bar bars__bar--alt bars__bar--3--alt"></span><span
-			class="bars__bar bars__bar--alt bars__bar--4--alt"
-		></span><span class="bars__bar bars__bar--alt bars__bar--5--alt"></span>
+<div class="flex justify-center">
+	<div class="container">
+		<div class="bars">
+			<span class="bars__bar bars__bar--0"></span><span class="bars__bar bars__bar--1"></span><span
+				class="bars__bar bars__bar--2"
+			></span><span class="bars__bar bars__bar--3"></span><span class="bars__bar bars__bar--4"
+			></span><span class="bars__bar bars__bar--5"></span><span
+				class="bars__bar bars__bar--alt bars__bar--0--alt"
+			></span><span class="bars__bar bars__bar--alt bars__bar--1--alt"></span><span
+				class="bars__bar bars__bar--alt bars__bar--2--alt"
+			></span><span class="bars__bar bars__bar--alt bars__bar--3--alt"></span><span
+				class="bars__bar bars__bar--alt bars__bar--4--alt"
+			></span><span class="bars__bar bars__bar--alt bars__bar--5--alt"></span>
+		</div>
 	</div>
 </div>
 
