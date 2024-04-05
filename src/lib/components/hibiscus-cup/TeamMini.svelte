@@ -19,6 +19,15 @@
      */
     export let twitchStreams: TwitchStream[];
 
+    /**
+     * 配信マルチ視聴サービス
+     */
+    const multistreUrlPrefix = 'https://multistre.am/';
+    /**
+     * チーム配信のマルチ視聴リンク
+     */
+    $: multistreLink = multistreUrlPrefix + twitchUsers.map(user => `${user.login}`).join('/');
+
 	/**
 	 * 順序を保証したTwitchUser情報
 	 */
@@ -60,6 +69,9 @@
                 </div>
             {/each}
         </div>
+        <a href={multistreLink} target="_blank" rel="noopener noreferrer">
+            <div class="mt-2 text-xs text-right text-blue-600 hover:underline">欲張り3画面(外部サイト)</div>
+        </a>
     </div>
 </div>
 
