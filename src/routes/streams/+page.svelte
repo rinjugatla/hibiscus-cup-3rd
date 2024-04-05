@@ -150,11 +150,11 @@
             title={showStream?.title}
             allowfullscreen={true} scrolling="no" height="100%" width="100%" />
         {:else}
-            {@const existsOfflineImage = showUser && showUser.offline_image_url.length > 0}
-            <img 
-            class="w-full h-full object-cover"
-            src={existsOfflineImage ? showUser?.offline_image_url: showUser?.profile_image_url} 
-            alt={showUser?.display_name}>
+            <iframe 
+            src="https://player.twitch.tv/?channel={showUser?.login}&parent=localhost" 
+            frameborder="0" 
+            title={showUser?.description}
+            allowfullscreen={true} scrolling="no" height="100%" width="100%" />
         {/if}
     </div>
 
