@@ -5,6 +5,7 @@
     import axios from 'redaxios';
 	import type { TwitchUser, TwitchUserResponse } from '$lib/types/Twitch';
 	import { HIBISCUS_CUP_STREAMERS } from '$lib/members';
+	import Loading from '$lib/components/commons/Loading.svelte';
     
     /**
      * チーム名
@@ -44,4 +45,6 @@
     {#each teamNames as name}
         <Team teamName={name} twitchUsers={twitchUsers[name]} />
     {/each}
+{:else}
+    <Loading />
 {/if}

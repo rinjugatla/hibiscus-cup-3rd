@@ -5,6 +5,7 @@
 	import type { TwitchStream, TwitchStreamResponse, TwitchUser, TwitchUserResponse } from '$lib/types/Twitch';
 	import { HIBISCUS_CUP_STREAMERS } from '$lib/members';
 	import TeamMini from '$lib/components/hibiscus-cup/TeamMini.svelte';
+	import Loading from '$lib/components/commons/Loading.svelte';
     
     /**
      * チーム名
@@ -162,4 +163,6 @@
             <TeamMini teamName={name} twitchUsers={twitchUsers[name]} {twitchStreams} on:click={changeShowStream}/>
         {/each}
     </div>
+{:else}
+    <Loading />
 {/if}
