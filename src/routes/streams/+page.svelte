@@ -1,12 +1,16 @@
 <script lang="ts">
     import type { HibiscusCupTeamName } from '$lib/types/HibiscusCupTeamName.d';
-	import { onMount } from 'svelte';
+	import { onDestroy, onMount } from 'svelte';
     import axios from 'redaxios';
 	import type { TwitchStream, TwitchStreamResponse, TwitchUser, TwitchUserResponse } from '$lib/types/Twitch';
 	import { HIBISCUS_CUP_STREAMERS } from '$lib/members';
 	import TeamMini from '$lib/components/hibiscus-cup/TeamMini.svelte';
 	import Loading from '$lib/components/commons/Loading.svelte';
     
+    /**
+     * 配信情報の取得キャンセルID
+     */
+    let updateStreamCancelId: number | null = null;
     /**
      * チーム名
      */
@@ -135,9 +139,13 @@
         await updateStreams();
         // 以降は一定時間毎に実行
         const updateInterval = 3 * 60 * 1000;
-        setInterval(async () => { await updateStreams() }, updateInterval);
+        updateStreamCancelId = setInterval(async () => { await updateStreams() }, updateInterval);
 
         initShowStream();
+    })
+
+    onDestroy(() => {
+        if (updateStreamCancelId){ clearInterval(updateStreamCancelId); }
     })
 </script>
 
