@@ -2,6 +2,9 @@
 	import type { HibiscusCupTeamName } from '$lib/types/HibiscusCupTeamName.d';
 	import { HIBISCUS_CUP_TEAMS, HIBISCUS_CUP_STREAMERS } from '$lib/members';
 	import type { TwitchStream, TwitchUser } from '$lib/types/Twitch';
+	import { createEventDispatcher } from 'svelte';
+    
+    const dispatch = createEventDispatcher();
 	
     /**
      * チーム名
@@ -39,14 +42,17 @@
         <span class="font-bold text-3xl text-hibiscus_cup_team_name text-shadow">team {teamName}</span>
         <div class="flex">
             {#each orderdTwitchUsers as member}
-            {@const liveNow = twitchStreams?.filter(stream => stream.type ==="live" && stream.user_id === member.id).length > 0}
-            
+            {@const stream = twitchStreams?.filter(stream => stream.type ==="live" && stream.user_id === member.id)}
+            {@const liveNow = stream.length > 0}
                 <div 
                 class="m-2 p-1 rounded-full"
                 class:live-circle={liveNow}
                 >
+                    <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+                    <!-- svelte-ignore a11y-click-events-have-key-events -->
                     <img 
-                        class="rounded-full h-16 w-16"
+                        on:click={() =>dispatch('click', { streamer: member, stream: liveNow ? stream[0] : null }) }    
+                        class="rounded-full h-16 w-16 hover:cursor-pointer"
                         src="{member.profile_image_url}" 
                         alt="{member.display_name}">
                 </div>
