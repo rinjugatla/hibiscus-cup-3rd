@@ -53,8 +53,10 @@
                     <img 
                         on:click={() =>dispatch('click', { streamer: member, stream: liveNow ? stream[0] : null }) }    
                         class="rounded-full h-16 w-16 hover:cursor-pointer"
-                        src="{member.profile_image_url}" 
-                        alt="{member.display_name}">
+                        src={member.profile_image_url}
+                        alt={member.display_name}
+                        title={member.display_name}
+                        >
                 </div>
             {/each}
         </div>
