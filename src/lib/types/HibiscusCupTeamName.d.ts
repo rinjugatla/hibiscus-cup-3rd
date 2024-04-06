@@ -1,1 +1,1 @@
-export type HibiscusCupTeamName = 'A' | 'B' | 'C' | 'D' | 'E' | 'F';
+export type HibiscusCupTeamName =  '本配信' | 'A' | 'B' | 'C' | 'D' | 'E' | 'F';

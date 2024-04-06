@@ -2,6 +2,11 @@ import type { HibiscusCupStreamer } from "./types/HibiscusCupStreamer.d"
 import type { HibiscusCupSponsor } from "./types/HibiscusCupSponsor.d"
 
 /**
+ * メイン配信チャンネル
+ */
+export const HIBISCUS_CUP_MAIN_STREAM_TWITCH_ID = '277818090';
+
+/**
  * 運営
  */
 export const HIBISCUS_CUP_SPONSORS: HibiscusCupSponsor[] = [
@@ -10,6 +15,8 @@ export const HIBISCUS_CUP_SPONSORS: HibiscusCupSponsor[] = [
 ]
 
 export const HIBISCUS_CUP_STREAMERS: HibiscusCupStreamer[] = [
+    { team: '本配信', name: 'りえぺこ', twitch: 'riepeko', twitch_id: '277818090', twitter: 'Riepeko_yolo', video_id: [] },
+
     { team: 'A', name: 'DEIcecreeeam', twitch: 'deicecreeeam', twitch_id: '234653657', twitter: 'deicecreeeam', video_id: [] },
     { team: 'A', name: '佐藤らむね', twitch: '310ramune', twitch_id: '732964132', twitter: '310ramune', video_id: [] },
     { team: 'A', name: 'ちーちゃんん', twitch: 'chi_chaan', twitch_id: '644642707', twitter: 'chi_chaan_tw', video_id: [] },
@@ -39,6 +46,11 @@ export const HIBISCUS_CUP_STREAMERS: HibiscusCupStreamer[] = [
  * チーム情報
  */
 export const HIBISCUS_CUP_TEAMS = [
+    {
+        team: '本配信',
+        twitter_link: 'https://twitter.com/Riepeko_yolo/status/1768570506708767059',
+        description: ''
+    },
     {
         team: 'A', 
         twitter_link: 'https://twitter.com/Riepeko_yolo/status/1768570513839026643',

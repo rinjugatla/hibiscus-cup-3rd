@@ -48,8 +48,10 @@
 
 <div class="m-3">
     <div class=" bg-white rounded-lg bg-opacity-60 p-3 size-fit">
-        <span class="font-bold text-3xl text-hibiscus_cup_team_name text-shadow">team {teamName}</span>
-        <div class="flex">
+        <span class="font-bold text-3xl text-hibiscus_cup_team_name text-shadow">
+            {teamName === '本配信' ? '' : 'team'} {teamName}
+        </span>
+        <div class="flex justify-center min-w-[264px]">
             {#each orderdTwitchUsers as member}
             {@const stream = twitchStreams?.filter(stream => stream.type ==="live" && stream.user_id === member.id)}
             {@const liveNow = stream.length > 0}
@@ -69,7 +71,9 @@
                 </div>
             {/each}
         </div>
-        <a href={multistreLink} target="_blank" rel="noopener noreferrer">
+        <a 
+        class:invisible={teamName === '本配信'}
+        href={multistreLink} target="_blank" rel="noopener noreferrer" >
             <div class="mt-2 text-xs text-right text-blue-600 hover:underline">欲張り3画面(外部サイト)</div>
         </a>
     </div>

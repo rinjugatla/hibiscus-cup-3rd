@@ -3,7 +3,7 @@
 	import { onDestroy, onMount } from 'svelte';
     import axios from 'redaxios';
 	import type { TwitchStream, TwitchStreamResponse, TwitchUser, TwitchUserResponse } from '$lib/types/Twitch';
-	import { HIBISCUS_CUP_STREAMERS } from '$lib/members';
+	import { HIBISCUS_CUP_MAIN_STREAM_TWITCH_ID, HIBISCUS_CUP_STREAMERS } from '$lib/members';
 	import TeamMini from '$lib/components/hibiscus-cup/TeamMini.svelte';
 	import Loading from '$lib/components/commons/Loading.svelte';
     import { page } from '$app/stores';
@@ -15,11 +15,11 @@
     /**
      * チーム名
      */
-    const teamNames: HibiscusCupTeamName[] = ['A', 'B', 'C', 'D', 'E', 'F'];
+    const teamNames: HibiscusCupTeamName[] = ['本配信', 'A', 'B', 'C', 'D', 'E', 'F'];
     /**
      * 配信者情報
      */
-    let twitchUsers: {[key in HibiscusCupTeamName]: TwitchUser[]} = {'A': [], 'B': [], 'C': [], 'D': [], 'E': [], 'F': []};
+    let twitchUsers: {[key in HibiscusCupTeamName]: TwitchUser[]} = {'本配信': [], 'A': [], 'B': [], 'C': [], 'D': [], 'E': [], 'F': []};
     /**
      * 配信情報
      */
@@ -77,6 +77,13 @@
      * ランダムな配信または配信者を表示
      */
     const initShowStream = () => {
+        const existsMainStream = twitchStreams.filter(stream => stream.user_id === HIBISCUS_CUP_MAIN_STREAM_TWITCH_ID).length > 0;
+        if (existsMainStream){ 
+            showUser = null;
+            showStream = twitchStreams.filter(stream => stream.user_id === HIBISCUS_CUP_MAIN_STREAM_TWITCH_ID)[0];
+            return;
+        }
+
         const existsStream = twitchStreams.length > 0;
         if (existsStream){
             const randomStream = getRandomStream();
@@ -167,10 +174,16 @@
         {/if}
     </div>
 
+    <div class="mx-auto flex justify-center">
+        <TeamMini teamName={'本配信'} twitchUsers={twitchUsers['本配信']} {twitchStreams} on:click={changeShowStream}/>
+    </div>
+
     <div class="mx-auto flex flex-wrap justify-center w-2/3">
-        {#each teamNames as name}
+    {#each teamNames as name}
+        {#if name !== '本配信'}
             <TeamMini teamName={name} twitchUsers={twitchUsers[name]} {twitchStreams} on:click={changeShowStream}/>
-        {/each}
+        {/if}
+    {/each}
     </div>
 {:else}
     <Loading />
