@@ -4,7 +4,7 @@ import type { HibiscusCupSponsor } from "./types/HibiscusCupSponsor.d"
 /**
  * メイン配信チャンネル
  */
-export const HIBISCUS_CUP_MAIN_STREAM_TWITCH_ID = 277818090;
+export const HIBISCUS_CUP_MAIN_STREAM_TWITCH_ID = '277818090';
 
 /**
  * 運営

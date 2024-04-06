@@ -77,10 +77,10 @@
      * ランダムな配信または配信者を表示
      */
     const initShowStream = () => {
-        const existsMainStream = twitchStreams.filter(stream => stream.user_id === HIBISCUS_CUP_MAIN_STREAM_TWITCH_ID.toString()).length > 0;
+        const existsMainStream = twitchStreams.filter(stream => stream.user_id === HIBISCUS_CUP_MAIN_STREAM_TWITCH_ID).length > 0;
         if (existsMainStream){ 
             showUser = null;
-            showStream = twitchStreams.filter(stream => stream.user_id === HIBISCUS_CUP_MAIN_STREAM_TWITCH_ID.toString())[0];
+            showStream = twitchStreams.filter(stream => stream.user_id === HIBISCUS_CUP_MAIN_STREAM_TWITCH_ID)[0];
             return;
         }
 
