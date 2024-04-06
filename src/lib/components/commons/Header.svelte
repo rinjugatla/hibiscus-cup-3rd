@@ -15,7 +15,7 @@
 	<NavHamburger />
 	<NavUl {activeUrl}>
 		<NavLi href="/">Home</NavLi>
-		<NavLi href="/sponsors">Sponsors</NavLi>
+		<!-- <NavLi href="/sponsors">Sponsors</NavLi> -->
 		<NavLi href="/teams">Teams</NavLi>
 		<NavLi href="/streams">Streams</NavLi>
 	</NavUl>
