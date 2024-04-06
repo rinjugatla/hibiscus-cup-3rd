@@ -15,11 +15,11 @@
     /**
      * チーム名
      */
-    const teamNames: HibiscusCupTeamName[] = ['A', 'B', 'C', 'D', 'E', 'F'];
+    const teamNames: HibiscusCupTeamName[] = ['本配信', 'A', 'B', 'C', 'D', 'E', 'F'];
     /**
      * 配信者情報
      */
-    let twitchUsers: {[key in HibiscusCupTeamName]: TwitchUser[]} = {'A': [], 'B': [], 'C': [], 'D': [], 'E': [], 'F': []};
+    let twitchUsers: {[key in HibiscusCupTeamName]: TwitchUser[]} = {'本配信': [], 'A': [], 'B': [], 'C': [], 'D': [], 'E': [], 'F': []};
     /**
      * 配信情報
      */
@@ -167,10 +167,16 @@
         {/if}
     </div>
 
+    <div class="mx-auto flex justify-center">
+        <TeamMini teamName={'本配信'} twitchUsers={twitchUsers['本配信']} {twitchStreams} on:click={changeShowStream}/>
+    </div>
+
     <div class="mx-auto flex flex-wrap justify-center w-2/3">
-        {#each teamNames as name}
+    {#each teamNames as name}
+        {#if name !== '本配信'}
             <TeamMini teamName={name} twitchUsers={twitchUsers[name]} {twitchStreams} on:click={changeShowStream}/>
-        {/each}
+        {/if}
+    {/each}
     </div>
 {:else}
     <Loading />

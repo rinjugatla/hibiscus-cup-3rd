@@ -14,7 +14,7 @@
     /**
      * 配信者情報
      */
-    let twitchUsers: {[key in HibiscusCupTeamName]: TwitchUser[]} = {'A': [], 'B': [], 'C': [], 'D': [], 'E': [], 'F': []};
+    let twitchUsers: {[key in HibiscusCupTeamName]: TwitchUser[]} = {'本配信': [],'A': [], 'B': [], 'C': [], 'D': [], 'E': [], 'F': []};
 
     /**
      * 配信者のTwitch情報を取得
