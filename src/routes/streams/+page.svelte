@@ -3,7 +3,7 @@
 	import { onDestroy, onMount } from 'svelte';
     import axios from 'redaxios';
 	import type { TwitchStream, TwitchStreamResponse, TwitchUser, TwitchUserResponse } from '$lib/types/Twitch';
-	import { HIBISCUS_CUP_STREAMERS } from '$lib/members';
+	import { HIBISCUS_CUP_MAIN_STREAM_TWITCH_ID, HIBISCUS_CUP_STREAMERS } from '$lib/members';
 	import TeamMini from '$lib/components/hibiscus-cup/TeamMini.svelte';
 	import Loading from '$lib/components/commons/Loading.svelte';
     import { page } from '$app/stores';
@@ -77,6 +77,13 @@
      * ランダムな配信または配信者を表示
      */
     const initShowStream = () => {
+        const existsMainStream = twitchStreams.filter(stream => stream.user_id === HIBISCUS_CUP_MAIN_STREAM_TWITCH_ID.toString()).length > 0;
+        if (existsMainStream){ 
+            showUser = null;
+            showStream = twitchStreams.filter(stream => stream.user_id === HIBISCUS_CUP_MAIN_STREAM_TWITCH_ID.toString())[0];
+            return;
+        }
+
         const existsStream = twitchStreams.length > 0;
         if (existsStream){
             const randomStream = getRandomStream();
