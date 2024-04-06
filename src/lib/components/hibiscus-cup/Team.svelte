@@ -69,7 +69,7 @@
 					<div class="flex items-center">
 						<XCompanySolid size="xs" />
 						<div>
-							出典
+							りえぺこ🌺
 						</div>
 					</div>
 				</a>
