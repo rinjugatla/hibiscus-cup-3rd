@@ -9,7 +9,6 @@
         {
             title: 'プレゼント企画',
             contents: '<blockquote class="twitter-tweet"><p lang="ja" dir="ltr"><a href="https://twitter.com/hashtag/HibiscusCUP?src=hash&amp;ref_src=twsrc%5Etfw">#HibiscusCUP</a> ×ゆんま工房コラボ<br>＼視聴者様プレゼントキャンペーン／<br><br>当ポストのリプ欄にて<br> 優勝チームを予想しよう！<br> ゆんま先生(<a href="https://twitter.com/Yuika_flw?ref_src=twsrc%5Etfw">@Yuika_flw</a>)が描く<br> 優勝チームイラスト、大会ロゴ等<br> ゆんま工房オリジナル缶バッジが当たる！<br> ※住所を教えて頂ける方<br><br> 当選者数：３名… <a href="https://t.co/zruRonzutX">https://t.co/zruRonzutX</a></p>&mdash; りえぺこ🌺:) @4/7 EFTイベ HibiscusCUP主催 (@Riepeko_yolo) <a href="https://twitter.com/Riepeko_yolo/status/1773645969114136872?ref_src=twsrc%5Etfw">March 29, 2024</a></blockquote>'
-
         }
     ];
 </script>
