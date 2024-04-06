@@ -6,6 +6,7 @@
 	import { HIBISCUS_CUP_STREAMERS } from '$lib/members';
 	import TeamMini from '$lib/components/hibiscus-cup/TeamMini.svelte';
 	import Loading from '$lib/components/commons/Loading.svelte';
+    import { page } from '$app/stores';
     
     /**
      * 配信情報の取得キャンセルID
@@ -153,13 +154,13 @@
     <div class="m-5 mx-auto w-auto max-w-screen-lg aspect-video rounded-lg">
         {#if canShowStream}
             <iframe 
-            src="https://player.twitch.tv/?channel={showStream?.user_login}&parent=localhost" 
+            src="https://player.twitch.tv/?channel={showStream?.user_login}&parent={$page.url.hostname}" 
             frameborder="0" 
             title={showStream?.title}
             allowfullscreen={true} scrolling="no" height="100%" width="100%" />
         {:else}
             <iframe 
-            src="https://player.twitch.tv/?channel={showUser?.login}&parent=localhost" 
+            src="https://player.twitch.tv/?channel={showUser?.login}&parent={$page.url.hostname}" 
             frameborder="0" 
             title={showUser?.description}
             allowfullscreen={true} scrolling="no" height="100%" width="100%" />
