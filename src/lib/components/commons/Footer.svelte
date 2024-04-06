@@ -3,7 +3,7 @@
     import GithubLinkIcon from '$lib/components/link-icon/GithubLinkIcon.svelte';
 
     const twitter_name = 'rin_jugatla';
-	const github_name = 'rinjugatla/hibiscus-cup-clips';
+	const github_name = 'rinjugatla/hibiscus-cup-3rd';
 </script>
 
 <div class="w-full absolute left-0 bottom-0 bg-white">
