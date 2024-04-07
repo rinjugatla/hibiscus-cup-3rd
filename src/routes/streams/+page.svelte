@@ -36,6 +36,10 @@
      * 配信を表示できるか
      */
     $: canShowStream = showStream !== null;
+    /**
+     * 初期化が終了したか
+     */
+    let finishedInit = false;
 
     /**
      * 配信者のTwitch情報を取得
@@ -150,6 +154,8 @@
         updateStreamCancelId = setInterval(async () => { await updateStreams() }, updateInterval);
 
         initShowStream();
+
+        finishedInit = true;
     })
 
     onDestroy(() => {
@@ -157,7 +163,7 @@
     })
 </script>
 
-{#if twitchUsers.A.length > 0 && twitchStreams.length > 0}
+{#if finishedInit}
     <div class="m-5 mx-auto w-auto max-w-screen-lg aspect-video rounded-lg">
         {#if canShowStream}
             <iframe 
