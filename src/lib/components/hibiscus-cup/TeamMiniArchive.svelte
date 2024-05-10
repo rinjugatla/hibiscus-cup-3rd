@@ -1,8 +1,10 @@
 <script lang="ts">
+    import { Indicator } from 'flowbite-svelte';
 	import type { HibiscusCupTeamName } from '$lib/types/HibiscusCupTeamName.d';
 	import { HIBISCUS_CUP_STREAMERS } from '$lib/members';
-	import type { TwitchUser } from '$lib/types/Twitch';
+	import type { ITwitchVideoResponse, TwitchUser } from '$lib/types/Twitch';
 	import { createEventDispatcher } from 'svelte';
+    import axios from 'redaxios';
     
     const dispatch = createEventDispatcher();
 	
@@ -31,6 +33,22 @@
 		}
 		orderdTwitchUsers = orderd;
 	}
+
+    /**
+     * 配信者のTwitch配信情報を取得
+     */
+    const fetchArchives = async(targetStreamer: TwitchUser) => {
+        const streamer = HIBISCUS_CUP_STREAMERS.filter(streamer => streamer.twitch_id === targetStreamer.id)[0];
+        const response = await axios.post<ITwitchVideoResponse>(
+            '/api/twitch/videos',
+            {archive_ids: streamer.archive_ids, digest_ids: streamer.digest_ids}
+        );
+
+        dispatch('fetchedArchives', { streamer: targetStreamer, archives: response.data.videos });
+
+        const videos = response.data.videos;
+        return videos;
+    }
 </script>
 
 <div class="m-3">
@@ -41,19 +59,28 @@
         <div class="flex justify-center min-w-[264px]">
             {#each orderdTwitchUsers as member}
             {@const user = HIBISCUS_CUP_STREAMERS.filter(streamer => streamer.twitch_id === member.id)[0]}
-            {@const hasArchive = user.archive_ids.length > 0 || user.digest_ids.length > 0}
                 <div 
-                class="m-2 p-1 rounded-full"
+                class="m-2 p-1 rounded-full relative"
                 >
-                    <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-                    <!-- svelte-ignore a11y-click-events-have-key-events -->
-                    <img 
-                        on:click={() =>dispatch('click', { streamer: member }) }    
+                    {#await fetchArchives(member)}
+                        <img 
                         class="rounded-full h-16 w-16 hover:cursor-pointer"
                         src={member.profile_image_url}
                         alt={member.display_name}
                         title={member.display_name}
                         >
+                    {:then validArchives}
+                        <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+                        <!-- svelte-ignore a11y-click-events-have-key-events -->
+                        <img 
+                            on:click={() =>dispatch('click', { streamer: member, archives: validArchives }) }
+                            class="rounded-full h-16 w-16 hover:cursor-pointer"
+                            src={member.profile_image_url}
+                            alt={member.display_name}
+                            title={member.display_name}
+                            >
+                        <Indicator color="green" border size="xl" placement="top-right" class="text-xs font-bold mr-2 mt-2">{validArchives.length}</Indicator>
+                    {/await}
                 </div>
             {/each}
         </div>

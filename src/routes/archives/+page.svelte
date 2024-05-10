@@ -31,7 +31,10 @@
     /**
      * 表示中のストリーマー
      */
-    let selectedStreamer: TwitchUser | null = null;
+    let selectedStream: { 
+        streamer: TwitchUser | null,  
+        archives: ITwitchVideo[]
+    } = { streamer: null, archives: [] };
     /**
      * 配信を表示できるか
      */
@@ -56,10 +59,26 @@
 
     /**
      * 表示する配信情報を変更
-     * @param clickEvent TeamMiniのアイコンクリックイベント
+     * @param event TeamMiniArchiveのアイコンクリックイベント
      */
-    const changeShowStream = (clickEvent: any) => {
-        selectedStreamer = clickEvent.detail.streamer;
+    const onClickStreamer = (event: any) => {
+        changeShowStream(event)
+    }
+
+    /**
+     * 表示する配信情報を変更
+     * @param event TeamMiniArchiveのアーカイブ情報取得イベント
+     */
+    const onFetchedArchives = (event: any) => {
+        changeShowStream(event)
+    }
+
+    /**
+     * 表示する配信情報を変更
+     * @param clickEvent TeamMiniArchiveのイベント
+     */
+    const changeShowStream = (event: any) => {
+        selectedStream = event.detail;
     }
 
     onMount(async ()  => {
@@ -72,24 +91,22 @@
             twitchUsers[team] = teamStreamers;
         }
 
-        selectedStreamer = users[0];
-
         finishedInit = true;
     })
 </script>
 
 
 {#if finishedInit}
-    <ArchiveViewer {selectedStreamer} />
+    <ArchiveViewer {selectedStream} />
 
     <div class="mx-auto flex justify-center">
-        <TeamMiniArchive teamName={'本配信'} twitchUsers={twitchUsers['本配信']} on:click={changeShowStream}/>
+        <TeamMiniArchive teamName={'本配信'} twitchUsers={twitchUsers['本配信']} on:click={onClickStreamer} on:fetchedArchives={onFetchedArchives}/>
     </div>
 
     <div class="mx-auto flex flex-wrap justify-center w-2/3">
     {#each teamNames as name}
         {#if name !== '本配信'}
-            <TeamMiniArchive teamName={name} twitchUsers={twitchUsers[name]} on:click={changeShowStream}/>
+            <TeamMiniArchive teamName={name} twitchUsers={twitchUsers[name]} on:click={onClickStreamer}/>
         {/if}
     {/each}
     </div>
