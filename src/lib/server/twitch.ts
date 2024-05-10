@@ -76,10 +76,7 @@ export class TwitchApi {
 
 	private async refreshToken() {
 		const needRefresh = this._Token == null || this._Token.isExpired(this._PrevGetTokenTime);
-		if (!needRefresh) {
-			console.log('dont need refresh token.');
-			return;
-		}
+		if (!needRefresh) { return; }
 
 		const url = 'https://id.twitch.tv/oauth2/token';
 		const response = await axios.post<TwitchTokenAPIResponse>(url, {
