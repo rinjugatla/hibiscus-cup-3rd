@@ -74,7 +74,7 @@
                         <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
                         <!-- svelte-ignore a11y-click-events-have-key-events -->
                         <img 
-                            on:click={() =>dispatch('click', { streamer: member, archives: validArchives }) }
+                            on:click={() => { if(hasArchives){dispatch('click', { streamer: member, archives: validArchives })} }}
                             class="rounded-full h-16 w-16 hover:cursor-pointer"
                             src={member.profile_image_url}
                             alt={member.display_name}
