@@ -4,7 +4,7 @@
     import axios from 'redaxios';
 	import type { TwitchStream, TwitchStreamResponse, TwitchUser, TwitchUserResponse } from '$lib/types/Twitch';
 	import { HIBISCUS_CUP_MAIN_STREAM_TWITCH_ID, HIBISCUS_CUP_STREAMERS } from '$lib/members';
-	import TeamMini from '$lib/components/hibiscus-cup/TeamMini.svelte';
+	import TeamMiniStream from '$lib/components/hibiscus-cup/TeamMiniStream.svelte';
 	import Loading from '$lib/components/commons/Loading.svelte';
     import { page } from '$app/stores';
     
@@ -181,13 +181,13 @@
     </div>
 
     <div class="mx-auto flex justify-center">
-        <TeamMini teamName={'本配信'} twitchUsers={twitchUsers['本配信']} {twitchStreams} on:click={changeShowStream}/>
+        <TeamMiniStream teamName={'本配信'} twitchUsers={twitchUsers['本配信']} {twitchStreams} on:click={changeShowStream}/>
     </div>
 
     <div class="mx-auto flex flex-wrap justify-center w-2/3">
     {#each teamNames as name}
         {#if name !== '本配信'}
-            <TeamMini teamName={name} twitchUsers={twitchUsers[name]} {twitchStreams} on:click={changeShowStream}/>
+            <TeamMiniStream teamName={name} twitchUsers={twitchUsers[name]} {twitchStreams} on:click={changeShowStream}/>
         {/if}
     {/each}
     </div>

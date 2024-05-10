@@ -18,5 +18,6 @@
 		<!-- <NavLi href="/sponsors">Sponsors</NavLi> -->
 		<NavLi href="/teams">Teams</NavLi>
 		<NavLi href="/streams">Streams</NavLi>
+		<NavLi href="/archives">Archives</NavLi>
 	</NavUl>
 </Navbar>
