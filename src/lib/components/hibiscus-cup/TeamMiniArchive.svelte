@@ -70,6 +70,7 @@
                         title={member.display_name}
                         >
                     {:then validArchives}
+                        {@const hasArchives = validArchives.length > 0}
                         <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
                         <!-- svelte-ignore a11y-click-events-have-key-events -->
                         <img 
@@ -79,7 +80,9 @@
                             alt={member.display_name}
                             title={member.display_name}
                             >
+                        {#if hasArchives}
                         <Indicator color="green" border size="xl" placement="top-right" class="text-xs font-bold mr-2 mt-2">{validArchives.length}</Indicator>
+                        {/if}
                     {/await}
                 </div>
             {/each}
