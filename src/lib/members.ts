@@ -15,31 +15,31 @@ export const HIBISCUS_CUP_SPONSORS: HibiscusCupSponsor[] = [
 ]
 
 export const HIBISCUS_CUP_STREAMERS: HibiscusCupStreamer[] = [
-    { team: '本配信', name: 'りえぺこ', twitch: 'riepeko', twitch_id: '277818090', twitter: 'Riepeko_yolo', video_id: [] },
+    { team: '本配信', name: 'りえぺこ', twitch: 'riepeko', twitch_id: '277818090', twitter: 'Riepeko_yolo', archive_ids: [2113280746], digest_ids: [2115205937] },
 
-    { team: 'A', name: 'DEIcecreeeam', twitch: 'deicecreeeam', twitch_id: '234653657', twitter: 'deicecreeeam', video_id: [] },
-    { team: 'A', name: '佐藤らむね', twitch: '310ramune', twitch_id: '732964132', twitter: '310ramune', video_id: [] },
-    { team: 'A', name: 'ちーちゃんん', twitch: 'chi_chaan', twitch_id: '644642707', twitter: 'chi_chaan_tw', video_id: [] },
+    { team: 'A', name: 'DEIcecreeeam', twitch: 'deicecreeeam', twitch_id: '234653657', twitter: 'deicecreeeam', archive_ids: [2113281611], digest_ids: [] },
+    { team: 'A', name: '佐藤らむね', twitch: '310ramune', twitch_id: '732964132', twitter: '310ramune', archive_ids: [2113275144], digest_ids: [] },
+    { team: 'A', name: 'ちーちゃんん', twitch: 'chi_chaan', twitch_id: '644642707', twitter: 'chi_chaan_tw', archive_ids: [], digest_ids: [2117188489, 2117190243] },
 
-    { team: 'B', name: 'あんぱん', twitch: 'ampm_m', twitch_id: '648357191', twitter: '_ampm_mm', video_id: [] },
-    { team: 'B', name: '御握利もぐ', twitch: 'mogu_vtuber', twitch_id: '776978805', twitter: 'Onigiri_MoguV', video_id: [] },
-    { team: 'B', name: 'るぴぃ', twitch: 'iamrupi', twitch_id: '728189924', twitter: 'iamrupii', video_id: [] },
+    { team: 'B', name: 'あんぱん', twitch: 'ampm_m', twitch_id: '648357191', twitter: '_ampm_mm', archive_ids: [2113276873], digest_ids: [] },
+    { team: 'B', name: '御握利もぐ', twitch: 'mogu_vtuber', twitch_id: '776978805', twitter: 'Onigiri_MoguV', archive_ids: [2113282371], digest_ids: [] },
+    { team: 'B', name: 'るぴぃ', twitch: 'iamrupi', twitch_id: '728189924', twitter: 'iamrupii', archive_ids: [2113279683], digest_ids: [] },
 
-    { team: 'C', name: 'ギルテックス', twitch: 'gilltex', twitch_id: '255849926', twitter: 'GillTeX_Twitch', video_id: [] },
-    { team: 'C', name: 'ゲームする女', twitch: 'sumi_oy', twitch_id: '782185458', twitter: 'game_onna', video_id: [] },
-    { team: 'C', name: 'みやまるだよ', twitch: 'miyamarumaru', twitch_id: '216686393', twitter: 'Toricha___n', video_id: [] },
+    { team: 'C', name: 'ギルテックス', twitch: 'gilltex', twitch_id: '255849926', twitter: 'GillTeX_Twitch', archive_ids: [2113278662], digest_ids: [] },
+    { team: 'C', name: 'ゲームする女', twitch: 'sumi_oy', twitch_id: '782185458', twitter: 'game_onna', archive_ids: [2113282793], digest_ids: [] },
+    { team: 'C', name: 'みやまるだよ', twitch: 'miyamarumaru', twitch_id: '216686393', twitter: 'Toricha___n', archive_ids: [2113281494], digest_ids: [] },
 
-    { team: 'D', name: 'せかめん', twitch: 'sekamenz', twitch_id: '927242788', twitter: 'sekamen_games', video_id: [] },
-    { team: 'D', name: 'おひつじめぇ', twitch: 'ohitsu_zi', twitch_id: '449244936', twitter: 'ohi_mee', video_id: [] },
-    { team: 'D', name: '桃井メイ', twitch: 'momoimei', twitch_id: '729153714', twitter: 'momoimei', video_id: [] },
+    { team: 'D', name: 'せかめん', twitch: 'sekamenz', twitch_id: '927242788', twitter: 'sekamen_games', archive_ids: [2113281713], digest_ids: [2114996424] },
+    { team: 'D', name: 'おひつじめぇ', twitch: 'ohitsu_zi', twitch_id: '449244936', twitter: 'ohi_mee', archive_ids: [2113281343, 2113319923, 2113349160], digest_ids: [] },
+    { team: 'D', name: '桃井メイ', twitch: 'momoimei', twitch_id: '729153714', twitter: 'momoimei', archive_ids: [2113281707], digest_ids: [] },
 
-    { team: 'E', name: '蒼音カノン', twitch: 'aone_kanon', twitch_id: '682441785', twitter: 'aone_kanon', video_id: [] },
-    { team: 'E', name: 'あぷべり', twitch: 'appleberry_xx', twitch_id: '617471728', twitter: 'snoopy_gamble', video_id: [] },
-    { team: 'E', name: 'もりんちゅ', twitch: 'morinchuuu', twitch_id: '439505716', twitter: 'morinomorinchu', video_id: [] },
+    { team: 'E', name: '蒼音カノン', twitch: 'aone_kanon', twitch_id: '682441785', twitter: 'aone_kanon', archive_ids: [2113279886], digest_ids: [] },
+    { team: 'E', name: 'あぷべり', twitch: 'appleberry_xx', twitch_id: '617471728', twitter: 'snoopy_gamble', archive_ids: [2113269378], digest_ids: [] },
+    { team: 'E', name: 'もりんちゅ', twitch: 'morinchuuu', twitch_id: '439505716', twitter: 'morinomorinchu', archive_ids: [2113272539], digest_ids: [] },
 
-    { team: 'F', name: '和花葉ちる', twitch: 'chilmelphary', twitch_id: '179246347', twitter: 'Chil_Twitch', video_id: [] },
-    { team: 'F', name: '相生あい', twitch: 'aioi_ai', twitch_id: '133061268', twitter: 'AioiAi_v', video_id: [] },
-    { team: 'F', name: 'かきゅう', twitch: 'kakyu_ttv', twitch_id: '520092504', twitter: 'xkakyux', video_id: [] },
+    { team: 'F', name: '和花葉ちる', twitch: 'chilmelphary', twitch_id: '179246347', twitter: 'Chil_Twitch', archive_ids: [2113281103], digest_ids: [] },
+    { team: 'F', name: '相生あい', twitch: 'aioi_ai', twitch_id: '133061268', twitter: 'AioiAi_v', archive_ids: [2113216050], digest_ids: [] },
+    { team: 'F', name: 'かきゅう', twitch: 'kakyu_ttv', twitch_id: '520092504', twitter: 'xkakyux', archive_ids: [2113277796], digest_ids: [] },
 ]
 
 /**

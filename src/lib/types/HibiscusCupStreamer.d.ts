@@ -6,5 +6,6 @@ export type HibiscusCupStreamer = {
     twitch: string;
     twitch_id: string;
     twitter: string;
-    video_id: string[];
+    archive_ids: int[];
+    digest_ids: int[];
 }
