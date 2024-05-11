@@ -21,6 +21,10 @@
      */
     let twitchUsers: {[key in HibiscusCupTeamName]: TwitchUser[]} = {'本配信': [], 'A': [], 'B': [], 'C': [], 'D': [], 'E': [], 'F': []};
     /**
+     * アーカイブ,ダイジェスト情報
+     */
+    let twitchArchives: ITwitchVideo[] = [];
+    /**
      * 表示中のストリーマーのアーカイブ
      */
     let showUserArchives: ITwitchVideo[] | null = [];
@@ -58,6 +62,22 @@
     }
 
     /**
+     * 配信者のTwitch配信情報を取得
+     */
+    const fetchArchives = async() => {
+        const archive_ids_array = HIBISCUS_CUP_STREAMERS.map(streamer => streamer.archive_ids);
+        const digest_ids_array = HIBISCUS_CUP_STREAMERS.map(streamer => streamer.digest_ids);
+        const response = await axios.post<ITwitchVideoResponse>(
+            '/api/twitch/videos',
+            {archive_ids: archive_ids_array.flat(), digest_ids: digest_ids_array.flat()}
+        );
+
+        const videos = response.data.videos;
+        const orderd = videos.sort(video => Number(video.id));
+        return orderd;
+    }
+
+    /**
      * 表示する配信情報を変更
      * @param event TeamMiniArchiveのアイコンクリックイベント
      */
@@ -91,8 +111,21 @@
             twitchUsers[team] = teamStreamers;
         }
 
+        twitchArchives = await fetchArchives();
+
+        initSelectStreamer();
+
         finishedInit = true;
     })
+
+    /**
+     * 最初はりえぺこさんを固定で表示
+     */
+    const initSelectStreamer = () => {
+        const riepeko = twitchUsers["本配信"][0]
+        const archives = twitchArchives.filter(archive => archive.user_id === riepeko.id);
+        selectedStream = { streamer: riepeko, archives: archives };
+    }
 </script>
 
 
@@ -100,13 +133,13 @@
     <ArchiveViewer {selectedStream} />
 
     <div class="mx-auto flex justify-center">
-        <TeamMiniArchive teamName={'本配信'} twitchUsers={twitchUsers['本配信']} on:click={onClickStreamer} on:fetchedArchives={onFetchedArchives}/>
+        <TeamMiniArchive teamName={'本配信'} {twitchUsers} {twitchArchives} on:click={onClickStreamer}/>
     </div>
 
     <div class="mx-auto flex flex-wrap justify-center w-2/3">
     {#each teamNames as name}
         {#if name !== '本配信'}
-            <TeamMiniArchive teamName={name} twitchUsers={twitchUsers[name]} on:click={onClickStreamer}/>
+            <TeamMiniArchive teamName={name} {twitchUsers} {twitchArchives} on:click={onClickStreamer}/>
         {/if}
     {/each}
     </div>
