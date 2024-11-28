@@ -125,82 +125,23 @@ export class TwitchApi {
 
 	/**
 	 * クリップを取得
-	 * @param id 
+	 * @param ids クリップID
 	 * @returns 
 	 */
-	async getClips(id: number): Promise<ITwitchClipResponse> {
+	async getClips(ids: string[]): Promise<ITwitchClipResponse> {
 		await this.refreshToken();
 
 		const url = 'https://api.twitch.tv/helix/clips';
+		const idsParams = this.createVideoIdsParams(ids);
 		const response = await axios.get<ITwitchClipAPIResponse>(url, {
 			headers: {
 				Authorization: this._Token!.token,
 				'Client-Id': this._Setting.ClientId
 			},
-			params: {
-				broadcaster_id: id
-			}
+			params: idsParams
 		});
 		const clips = {clips: response.data.data};
 		return clips;
-	}
-
-	/**
-	 * 配信IDに関連するクリップを取得
-	 * @param broadcaster_id 配信者ID
-	 * @param video_id 配信ID
-	 */
-	async getClipsWithVideoId(broadcaster_id: number, video_ids: string[]): Promise<ITwitchClipResponse> {
-		this.refreshToken();
-
-		if (video_ids.length === 0) { return { clips: [] }; }
-		// ビデオ保存期間は配信開始から最大60日、クリップ取得の最終日を決めるためビデオ情報を先に取得する
-		const videoResponse = await this.getVideos(video_ids);
-		const createClipPeriod = this.calcCanCreateClipPeriod(videoResponse.videos);
-		
-		const url = 'https://api.twitch.tv/helix/clips';
-		const maxLoopCount = 10;
-		let clips: ITwitchClip[] = [];
-		for (let i = 0; i < maxLoopCount; i++) {
-			const response = await axios.get<ITwitchClipAPIResponse>(url, {
-				headers: {
-					Authorization: this._Token!.token,
-					'Client-Id': this._Setting.ClientId
-				},
-				params: {
-					broadcaster_id: broadcaster_id,
-					started_at: createClipPeriod.start.toISOString(), // RFC3339書式
-					ended_at: createClipPeriod.end.toISOString(),
-					first: '100'
-				}
-			});
-			clips = [...response.data.data]
-			
-			const existsMoreClips = response.data?.pagination != undefined;
-			if (!existsMoreClips){ break; }
-		}
-		
-		const targetVideoClips = clips.filter((clip) => video_ids.includes(clip.video_id));
-		const result = { clips: targetVideoClips }
-		return result;
-	}
-
-	/**
-	 * クリック作成可能期間を計算
-	 * @param videos ビデオ情報
-	 */
-	calcCanCreateClipPeriod(videos: ITwitchVideo[]): ICanCreateClipPeriod {
-		const startAts = videos.map((video) => new Date(video.created_at)).sort()
-		const startAt = startAts[0];
-		const lastStartAt = new Date(startAts.slice(-1)[0].getTime());
-		const createClipMaxDays = 60;
-		lastStartAt.setDate(lastStartAt.getDate() + createClipMaxDays);
-
-		const result = {
-			start: startAt,
-			end: lastStartAt
-		}
-		return result;
 	}
 	
 	/**

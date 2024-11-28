@@ -8,4 +8,5 @@ export type HibiscusCupStreamer = {
     twitter: string;
     archive_ids: int[];
     digest_ids: int[];
+    clip_ids: string[];
 }

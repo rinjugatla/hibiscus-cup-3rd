@@ -1,6 +1,6 @@
 <script>
 	import Footer from '$lib/components/commons/Footer.svelte';
-import Header from '$lib/components/commons/Header.svelte';
+	import Header from '$lib/components/commons/Header.svelte';
 	import '../app.pcss';
 </script>
 
